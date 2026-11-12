@@ -4,6 +4,24 @@
   "description": "GitLab merge request provider for the DeepSeek Harness forge panel, read through the glab CLI",
   "type": "module",
   "license": "MIT",
+  "author": "futuretea",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/futuretea/dsh-forge-gitlab.git"
+  },
+  "homepage": "https://github.com/futuretea/dsh-forge-gitlab#readme",
+  "bugs": {
+    "url": "https://github.com/futuretea/dsh-forge-gitlab/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "cordis",
+    "plugin",
+    "gitlab",
+    "forge",
+    "merge-request"
+  ],
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
   "exports": {
@@ -28,6 +46,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
     "test": "vitest run"
   },
   "dependencies": {
@@ -44,6 +64,7 @@
     "@deepseek-ai/dsh-experimental-forge": "0.2.2-rc.2",
     "@deepseek-ai/dsh-subprocess": "0.2.2-rc.2",
     "@types/node": "^24.0.0",
+    "oxlint": "^1.93.0",
     "typescript": "^5.9.0",
     "vitest": "^3.0.0"
   }

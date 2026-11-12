@@ -48,6 +48,8 @@ Reviewers come from the merge request's reviewer list; the aggregate approval st
 
 ```sh
 pnpm install
-pnpm run typecheck && pnpm run build && pnpm test
+pnpm run lint && pnpm run typecheck && pnpm run build && pnpm test
 node tests/smoke.mjs   # mounts the real forge registry plus this plugin
 ```
+
+CI runs the same chain on pushes to `main` and on pull requests (`.github/workflows/pr-checks.yml`). Pushing a `vX.Y.Z` tag whose version matches `package.json` builds, checks, and publishes the package to npm via Trusted Publishing (`.github/workflows/release.yml`).
