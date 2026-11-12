@@ -1,6 +1,6 @@
 {
   "name": "dsh-forge-gitlab",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "GitLab merge request provider for the DeepSeek Harness forge panel, read through the glab CLI",
   "type": "module",
   "license": "MIT",
