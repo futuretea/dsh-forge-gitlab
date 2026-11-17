@@ -18,13 +18,17 @@ function splitTransport(url: string, prefix: string): [string, string] | undefin
   return [host, withoutUser.slice(slash + 1)]
 }
 
-/** Split a remote URL into a lowercase host and repository path, or undefined for an unrecognized form. */
+/** Split a remote URL into a host and repository path, or undefined for an unrecognized form. */
 function splitRemote(url: string): [string, string] | undefined {
   if (url.startsWith('https://') || url.startsWith('http://')) {
-    const after = url.slice(url.indexOf('://') + 3)
-    const slash = after.indexOf('/')
-    if (slash <= 0) return undefined
-    return [after.slice(0, slash), after.slice(slash + 1)]
+    let parsed: URL
+    try {
+      parsed = new URL(url)
+    } catch {
+      return undefined
+    }
+    if (parsed.pathname.length <= 1) return undefined
+    return [parsed.host, parsed.pathname.slice(1)]
   }
   if (url.startsWith('ssh://')) return splitTransport(url, 'ssh://')
   if (url.startsWith('git://')) return splitTransport(url, 'git://')
