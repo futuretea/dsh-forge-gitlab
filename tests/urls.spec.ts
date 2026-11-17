@@ -13,6 +13,10 @@ describe('repositoryFromRemote', () => {
     ['git://gitlab.com/owner/name.git', { forge: 'gitlab', host: 'gitlab.com', owner: 'owner', name: 'name' }],
     ['git@gitlab.com:owner/name.git', { forge: 'gitlab', host: 'gitlab.com', owner: 'owner', name: 'name' }],
     ['git@gitlab.example.com:group/name/', { forge: 'gitlab', host: 'gitlab.example.com', owner: 'group', name: 'name' }],
+    ['https://user:secret@gitlab.com/group/sub/project.git', { forge: 'gitlab', host: 'gitlab.com', owner: 'group/sub', name: 'project' }],
+    ['https://gitlab.com:443/owner/name.git', { forge: 'gitlab', host: 'gitlab.com', owner: 'owner', name: 'name' }],
+    ['http://gitlab.example.com:80/owner/name/', { forge: 'gitlab', host: 'gitlab.example.com', owner: 'owner', name: 'name' }],
+    ['https://user:secret@gitlab.example.com:8080/owner/name.git', { forge: 'gitlab', host: 'gitlab.example.com:8080', owner: 'owner', name: 'name' }],
   ])('maps %s', (url, expected) => {
     expect(repositoryFromRemote(url, HOSTS)).toEqual(expected)
   })
@@ -24,6 +28,7 @@ describe('repositoryFromRemote', () => {
     'file:///srv/git/name.git',
     'owner/name',
     '',
+    'https://user:secret@github.com/owner/name.git',
   ])('rejects %s', (url) => {
     expect(repositoryFromRemote(url, HOSTS)).toBeUndefined()
   })
